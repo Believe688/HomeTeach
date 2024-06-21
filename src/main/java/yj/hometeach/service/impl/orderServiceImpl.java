@@ -22,7 +22,7 @@ public class orderServiceImpl implements orderService {
     private mongoDao mongodao;
 
     @Override
-    public List getOrderListByCondition(String studyArea, String graduateSchool, String orderTeachType, String orderSex,
+    public List<orderInfo> getOrderListByCondition(String studyArea, String graduateSchool, String orderTeachType, String orderSex,
                                         int currentPage, int pageSize) {
         Query query = new Query();
         if (studyArea != null) {

@@ -26,14 +26,14 @@ class HomeTeachApplicationTests {
     @Test
     void contextLoads() {
         teacherInfo teacherInfo = new teacherInfo();
-        teacherInfo.setName("李四");
-        teacherInfo.setPhone("123456789");
+        teacherInfo.setName("王五");
+        teacherInfo.setPhone("13053767825");
         teacherInfo.setSex("男");
         teacherInfo.setEducation("本科");
         teacherInfo.setWorkExperience("5年");
         teacherInfo.setWorkTitle("教师");
         teacherInfo.setSelfExperience("5年");
-        teacherInfo.setGraduateSchool("北京大小");
+        teacherInfo.setGraduateSchool("青岛农业大学");
         teacherInfo.setMajor("计算机科学与技术");
         teacherInfo.setTeachType("全职");
         teacherInfo.setTeachArea(new String[]{"北京", "南京"});
@@ -44,6 +44,7 @@ class HomeTeachApplicationTests {
         teacherInfo.setWorkTime("9:00-18:00");
         teacherInfo.setCurrentPlace("北京");
         teacherInfo.setSelfIntroduction("本人是计算机科学与技术专业毕业，5年教师经验，5年教学经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，5年教学管理经验，");
+        teacherInfo.setTeachId(00000001);
         mongodao.insertDoc(teacherInfo);
     }
 

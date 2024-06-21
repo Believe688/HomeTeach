@@ -2,10 +2,7 @@ package yj.hometeach.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import yj.hometeach.config.R;
 import yj.hometeach.domain.orderInfo;
 import yj.hometeach.service.orderService;
@@ -40,7 +37,7 @@ public class orderController {
     }
 
     @PostMapping("/add")
-    public R putOrderInfo(orderInfo orderInfo){
+    public R putOrderInfo(@RequestBody orderInfo orderInfo){
         int result = 0;
         try {
             result = orderService.putOrderInfo(orderInfo);

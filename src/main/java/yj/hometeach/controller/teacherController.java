@@ -34,7 +34,6 @@ public class teacherController {
     @GetMapping("/normal")
     public R getTeacherList(String[] teachArea, String graduateSchool, String[] teachMajor, String workTitle,
                             String sex, int currentPage, int pageSize) {
-        log.info("接受");
         List result = null;
         if (teachArea == null){
             teachArea = new String[]{};
