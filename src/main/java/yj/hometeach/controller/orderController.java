@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import yj.hometeach.config.R;
 import yj.hometeach.domain.orderInfo;
 import yj.hometeach.service.orderService;
+import yj.hometeach.service.utilService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ import java.util.List;
 public class orderController {
     @Autowired
     private orderService orderService;
+    @Autowired
+    private utilService utilService;
     @GetMapping()
     public R getOrderList(String studyArea, String graduateSchool, String orderTeachType, String orderSex,
                           int currentPage, int pageSize){
@@ -36,10 +39,16 @@ public class orderController {
         return new R(200,true, result, result.size());
     }
 
+    /**
+     * 添加订单
+     * @param orderInfo 订单数据
+     * @return
+     */
     @PostMapping("/add")
     public R putOrderInfo(@RequestBody orderInfo orderInfo){
         int result = 0;
         try {
+            log.info(orderInfo.toString());
             result = orderService.putOrderInfo(orderInfo);
         } catch (Exception e) {
             log.error("Put order error=>{}", e.toString());
@@ -50,4 +59,5 @@ public class orderController {
         }
         return new R(200,true);
     }
+
 }
