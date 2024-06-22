@@ -11,6 +11,8 @@ import yj.hometeach.service.orderService;
 
 import java.util.List;
 import yj.hometeach.dao.mongoDao;
+import yj.hometeach.service.utilService;
+
 /**
  * @TIME 2024/6/16
  * @USER Linn
@@ -20,6 +22,8 @@ import yj.hometeach.dao.mongoDao;
 public class orderServiceImpl implements orderService {
     @Autowired
     private mongoDao mongodao;
+    @Autowired
+    private yj.hometeach.service.utilService utilService;
 
     @Override
     public List<orderInfo> getOrderListByCondition(String studyArea, String graduateSchool, String orderTeachType, String orderSex,
@@ -51,8 +55,11 @@ public class orderServiceImpl implements orderService {
     @Override
     public int putOrderInfo(orderInfo orderInfo) {
         try {
-
-            return mongodao.insertDoc(orderInfo) ? 1 : 0;
+            orderInfo.setOrderId(utilService.generateId(orderInfo.getPhone()));// 生成订单ID
+            orderInfo.setOrderTime(utilService.getTime());// 订单时间
+            log.info("orderInfo=>{}", orderInfo);
+            return 0;// 暂时不插入
+//            return mongodao.insertDoc(orderInfo) ? 1 : 0;
         } catch (Exception e) {
             log.error("Put Order has error=>{ }",e);
             throw new RuntimeException("插入未成功，请重试");
