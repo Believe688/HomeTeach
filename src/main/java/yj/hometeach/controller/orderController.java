@@ -29,35 +29,15 @@ public class orderController {
         List result;
         try {
             result = orderService.getOrderListByCondition(studyArea, graduateSchool, orderTeachType, orderSex, currentPage, pageSize);
+            if (result == null) {// 如果按照条件查询不到结果，则返回默认查询结果
+                result = orderService.getOrderListByCondition(null, null, null, null, currentPage, pageSize);
+                return new R(400,true, result, result.size());
+            }
+            return new R(200,true, result, result.size());
         } catch (Exception e) {
             log.error("Get order error=>{}", e.toString());
             return new R(500,false);
         }
-        if (result == null) {
-            return new R(400,false);
-        }
-        return new R(200,true, result, result.size());
-    }
-
-    /**
-     * 添加订单
-     * @param orderInfo 订单数据
-     * @return
-     */
-    @PostMapping("/add")
-    public R putOrderInfo(@RequestBody orderInfo orderInfo){
-        int result = 0;
-        try {
-            log.info(orderInfo.toString());
-            result = orderService.putOrderInfo(orderInfo);
-        } catch (Exception e) {
-            log.error("Put order error=>{}", e.toString());
-            return new R(500,false);
-        }
-        if (result == 0) {
-            return new R(400,false);
-        }
-        return new R(200,true);
     }
 
 }

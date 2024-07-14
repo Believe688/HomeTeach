@@ -5,7 +5,7 @@ package yj.hometeach.service;
  * @USER Linn
  */
 public interface utilService {
-    Boolean sendOTP(String phone);
-    String generateId(String phone);
+    String sendOTP(String phone);
+    String generateId(int length);
     String getTime();
 }

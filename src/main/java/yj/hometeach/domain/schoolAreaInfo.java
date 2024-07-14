@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document("school")
 @Data
-public class schoolInfo {
+public class schoolAreaInfo {
     private String schoolCode;
     private Boolean isGov;
     private String schoolName;

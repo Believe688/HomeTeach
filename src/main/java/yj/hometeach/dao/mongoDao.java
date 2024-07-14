@@ -29,5 +29,5 @@ public interface mongoDao {
     List findByCondition(Query query, Class object);
 
     // 根据条件计算出所查询出的数据总数
-    List getColumns(Aggregation agg, Object object);
+    List getColumns(Aggregation agg, Class object);
 }

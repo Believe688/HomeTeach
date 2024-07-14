@@ -13,5 +13,4 @@ public interface orderService {
     List getOrderListByCondition(String studyArea, String graduateSchool, String orderTeachType, String orderSex,
                                  int currentPage, int pageSize);
 
-    int putOrderInfo(orderInfo orderInfo);
 }

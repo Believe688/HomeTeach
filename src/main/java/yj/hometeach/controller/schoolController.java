@@ -3,13 +3,10 @@ package yj.hometeach.controller;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import yj.hometeach.config.R;
-import yj.hometeach.domain.schoolInfo;
-import yj.hometeach.service.schoolService;
+import yj.hometeach.domain.schoolAreaInfo;
+import yj.hometeach.service.schoolAreaService;
 
 import java.util.List;
 
@@ -22,12 +19,25 @@ import java.util.List;
 @RequestMapping("/school")
 public class schoolController {
     @Autowired
-    private schoolService schoolService;
+    private schoolAreaService schoolService;
+    @GetMapping("")
+    public R getSchoolAreaList() {
+        try {
+            List<schoolAreaInfo> result = schoolService.getAreaList();
+            if (result == null) {
+                return new R(400, false );
+            }
+            return new R(200, true, result, result.size());
+        } catch (Exception e) {
+            log.error("Controller层错误=>{ }",e);
+            return new R(500, false);
+        }
+    }
 
     @PostMapping("")
     public R getSchoolName(@RequestBody schoolNameArgs args) {
         try {
-            List<schoolInfo> result = schoolService.getSchoolName(args.schoolArea, args.schoolProvince);
+            List<schoolAreaInfo> result = schoolService.getSchoolName(args.schoolArea, args.schoolProvince);
             if (result == null) {
                 return new R(400, true);
             }
@@ -39,7 +49,7 @@ public class schoolController {
     }
 
     @Data
-    static class schoolNameArgs {
+    private static class schoolNameArgs {
         String schoolArea;
         String schoolProvince;
     }

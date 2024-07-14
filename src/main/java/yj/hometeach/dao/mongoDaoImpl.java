@@ -95,9 +95,9 @@ public class mongoDaoImpl implements mongoDao{
      * @return 聚合结果
      */
     @Override
-    public List getColumns(Aggregation agg, @NonNull Object object) {
+    public List getColumns(Aggregation agg, @NonNull Class object) {
         try {
-            return mongoTemplate.aggregate(agg, object.getClass(), BasicDBObject.class).getMappedResults();
+            return mongoTemplate.aggregate(agg, object, BasicDBObject.class).getMappedResults();
         } catch (MongoException e) {
             log.error("Error getColumns:", e);
             return null;

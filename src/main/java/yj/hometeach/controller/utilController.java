@@ -19,9 +19,9 @@ public class utilController {
     private utilService utilService;
     @PostMapping("/otp")
     public R sendOTP(String phone) {
-        if (utilService.sendOTP(phone)){
-            return new R(400,false);
-        };
+//        if (utilService.sendOTP(phone)){
+//            return new R(400,false);
+//        };
         return new R(200, true);
     }
 }

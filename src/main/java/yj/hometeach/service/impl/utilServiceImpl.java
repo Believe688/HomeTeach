@@ -25,21 +25,18 @@ public class utilServiceImpl implements utilService {
      * @return
      */
     @Override
-    public Boolean sendOTP(String phone) {
+    public String sendOTP(String phone) {
         Pattern pattern = Pattern.compile("^1[3-9]\\d{9}$");
         if (pattern.matcher(phone).matches()){
-            // send otp
-            return true;
+            String code = generateId(6);// 验证码
+            return code;
         }
-        return false;
+        return null;
     }
 
     @Override
-    public String generateId(String phone) {
-        UUID generateId = UUID.nameUUIDFromBytes(phone.getBytes());
-        String code = String.valueOf(generateId.hashCode());
-        // 先返回8位的hashcode
-        return code.substring(code.length()-8);
+    public String generateId(int length) {
+        return String.valueOf((int)((Math.random()*9+1)* Math.pow(10, length-1)));
     }
 
     @Override

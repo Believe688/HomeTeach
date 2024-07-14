@@ -65,24 +65,6 @@ public class teacherController {
         }
         return new R(200,true, result, result.size());
     }
-    /**
-     * 添加教师，需权限
-     * @param teacherInfo 教师信息
-     * @return
-     */
-    @PostMapping("/add")
-    public R putTeacherInfo(teacherInfo teacherInfo) {
-        int result = 0;
-        try {
-            result = teacherService.putTeacherInfo(teacherInfo);
-        } catch (Exception e) {
-            log.error("Add Teacher has error=>{}",e.getMessage());
-            return new R(500,false);
-        }
-        if (result == 0) {
-            return new R(400,false);
-        }
-        return new R(200,true);
-    }
+
 
 }

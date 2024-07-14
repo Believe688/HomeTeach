@@ -65,16 +65,4 @@ public class teacherServiceImpl implements teacherService {
             throw new RuntimeException("查找出现问题，请重试");
         }
     }
-
-    @Override
-    public int putTeacherInfo(teacherInfo teacherInfo){
-        try {
-            // 通过手机号作为唯一键来生成UUID，后期改为身份证号码
-            teacherInfo.setTeachId(UUID.nameUUIDFromBytes(teacherInfo.getPhone().getBytes()).version());
-            return mongodao.insertDoc(teacherInfo) ? 1 : 0;
-        } catch (Exception e) {
-            log.error("Put Teacher has error=>{ }",e);
-            throw new RuntimeException("插入未成功，请重试");
-        }
-    }
 }

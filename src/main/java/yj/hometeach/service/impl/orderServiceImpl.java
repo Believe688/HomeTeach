@@ -51,18 +51,4 @@ public class orderServiceImpl implements orderService {
             throw new RuntimeException("查找订单出现问题，请重试");
         }
     }
-
-    @Override
-    public int putOrderInfo(orderInfo orderInfo) {
-        try {
-            orderInfo.setOrderId(utilService.generateId(orderInfo.getPhone()));// 生成订单ID
-            orderInfo.setOrderTime(utilService.getTime());// 订单时间
-            log.info("orderInfo=>{}", orderInfo);
-            return 0;// 暂时不插入
-//            return mongodao.insertDoc(orderInfo) ? 1 : 0;
-        } catch (Exception e) {
-            log.error("Put Order has error=>{ }",e);
-            throw new RuntimeException("插入未成功，请重试");
-        }
-    }
 }
