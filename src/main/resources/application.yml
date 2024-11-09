@@ -1,0 +1,15 @@
+spring:
+  data:
+    mongodb:
+      host: 47.116.11.247
+      port: 27007
+#      host: 172.17.0.2
+#      port: 27017
+      database: mediacore
+      username: normal
+      password: Ww125696!
+      authentication-database: admin
+server:
+  port: 81
+  servlet:
+    context-path: /api
